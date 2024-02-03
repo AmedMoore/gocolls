@@ -1,23 +1,29 @@
 name: Release
 
 on:
-  push:
+  workflow_run:
+    workflows:
+      - Test
     tags:
       - 'v*'
+    types:
+      - completed
 
 jobs:
   release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Upload Release Assets
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
       - name: Release
-        uses: svenstaro/upload-release-action@v2
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          tag: ${{ github.ref }}
-          file: '*'
-          file_glob: true
-          overwrite: true
+          body: ""
+          draft: false
+          prerelease: false
