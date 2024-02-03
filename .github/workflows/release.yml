@@ -12,13 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: marvinpinto/action-automatic-releases@latest
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: ""
-          draft: false
+          repo_token: ${{ secrets.RELEASE_TOKEN }}
+          title: Release ${{ github.ref }}
           prerelease: false
