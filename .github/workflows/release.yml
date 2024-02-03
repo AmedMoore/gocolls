@@ -18,6 +18,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           release_name: Release ${{ github.ref }}
           tag: ${{ github.ref }}
-          file: *
+          file: '*'
           file_glob: true
           overwrite: true
