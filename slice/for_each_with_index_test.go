@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestForEachIndexed(t *testing.T) {
+func TestForEachWithIndex(t *testing.T) {
 	cases := []struct {
 		name     string
 		input    []int
@@ -30,7 +30,7 @@ func TestForEachIndexed(t *testing.T) {
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
 			var result []int
-			ForEachIndexed(c.input, func(v int, i int) { result = append(result, v*i) })
+			ForEachWithIndex(c.input, func(v int, i int) { result = append(result, v*i) })
 			if len(result) != len(c.expected) {
 				t.Fatalf("Expected length %d but got %d", len(c.expected), len(result))
 			}

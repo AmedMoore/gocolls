@@ -25,6 +25,12 @@ func TestChunk(t *testing.T) {
 			expected:  [][]int{},
 		},
 		{
+			name:      "Chunk size is zero",
+			input:     []int{1, 2, 3},
+			chunkSize: 0,
+			expected:  [][]int{},
+		},
+		{
 			name:      "Chunk size larger than slice",
 			input:     []int{1, 2, 3},
 			chunkSize: 5,

@@ -5,8 +5,7 @@ import (
 	"testing"
 )
 
-func TestMapIndexed(t *testing.T) {
-	// Define test cases.
+func TestMapWithIndex(t *testing.T) {
 	tests := []struct {
 		name   string
 		input  []int
@@ -39,12 +38,11 @@ func TestMapIndexed(t *testing.T) {
 		},
 	}
 
-	// Process test cases.
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := MapIndexed(tt.input, tt.f)
+			got := MapWithIndex(tt.input, tt.f)
 			if !reflect.DeepEqual(got, tt.expect) {
-				t.Errorf("MapIndexed() got = %v, expected = %v", got, tt.expect)
+				t.Errorf("MapWithIndex() got = %v, expected = %v", got, tt.expect)
 			}
 		})
 	}

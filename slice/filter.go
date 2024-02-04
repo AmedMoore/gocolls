@@ -4,6 +4,9 @@ package slice
 // and returns a new slice containing only the elements that satisfy
 // the predicate function.
 func Filter[T any](slice []T, predicate func(T) bool) []T {
+	if predicate == nil {
+		return slice
+	}
 	filtered := make([]T, 0)
 	for _, item := range slice {
 		if predicate(item) {
